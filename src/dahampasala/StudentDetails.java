@@ -24,6 +24,11 @@ public class StudentDetails extends AbstractTableModel{
     public int getRowCount() {
         return list.size();
     }
+    
+    @Override
+    public String getColumnName(int columnIndex){
+        return COLUMN_NAMES[columnIndex];
+    }
 
     @Override
     public int getColumnCount() {

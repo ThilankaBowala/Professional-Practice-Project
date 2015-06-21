@@ -81,6 +81,11 @@ public class MainFrame extends javax.swing.JFrame {
         btnViewStudent.setText("View Student");
 
         btnUpdateStudent.setText("Update Student");
+        btnUpdateStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStudentActionPerformed(evt);
+            }
+        });
 
         btnDeleteStudent.setText("Delete Student");
 
@@ -193,6 +198,12 @@ public class MainFrame extends javax.swing.JFrame {
         newStd.setVisible(true);
         newStd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_btnAddStudentActionPerformed
+
+    private void btnUpdateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudentActionPerformed
+        UpdateStudent updatStd = new UpdateStudent();
+        updatStd.setVisible(true);
+        updatStd.setFields(stList.get(tblStudents.getSelectedRow()));
+    }//GEN-LAST:event_btnUpdateStudentActionPerformed
 
     /**
      * @param args the command line arguments

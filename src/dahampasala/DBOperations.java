@@ -66,15 +66,15 @@ public class DBOperations {
     ArrayList<Student> getStudent() {
         try {
             ArrayList<Student> list = new ArrayList<Student>();
-            
+
             con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "SELECT * FROM StudentDetails";
 
             pst = (PreparedStatement) con.prepareStatement(query);
-            
+
             rs = pst.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Student s = new Student();
                 s.setRegID(rs.getInt(1));
                 s.setFirstName(rs.getString(2));
@@ -86,9 +86,9 @@ public class DBOperations {
                 s.setRegisteredDate(rs.getDate(8));
                 list.add(s);
             }
-            
+
             return list;
-            
+
         } catch (Exception ex) {
             Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -104,8 +104,71 @@ public class DBOperations {
                 Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
+
+    public boolean updateStudent(Student student) {
+        try {
+            java.util.Date utilDateDOB = student.getDateOfBirth();
+            java.sql.Date sqlDateDOB = new java.sql.Date(utilDateDOB.getTime());
+            java.util.Date utilDateReg = student.getRegisteredDate();
+            java.sql.Date sqlDateReg = new java.sql.Date(utilDateReg.getTime());
+            
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "UPDATE StudentDetails SET firstName='"+ student.getFirstName() +"', lastName='"+ student.getLastName() +"', dob="+ sqlDateDOB +", address='"+ student.getAddress() +"', gender='"+ student.getGender() +"', admissionClass='"+ student.getAdmissionClass() +"', registeredDate=" + sqlDateReg + " WHERE regId=" + student.getRegID();
+
+            pst = (PreparedStatement) con.prepareStatement(query);
+            pst.executeUpdate();
+            
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public boolean deleteStudent(Student student) {
+        try {
+            java.util.Date utilDateDOB = student.getDateOfBirth();
+            java.sql.Date sqlDateDOB = new java.sql.Date(utilDateDOB.getTime());
+            java.util.Date utilDateReg = student.getRegisteredDate();
+            java.sql.Date sqlDateReg = new java.sql.Date(utilDateReg.getTime());
+            
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "DELETE FROM StudentDetails WHERE regId=" + student.getRegID();
+
+            pst = (PreparedStatement) con.prepareStatement(query);
+            pst.execute();
+            
+            return true;
+        } catch (Exception ex) {
+            Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
 //    int checkUsername(String user){
 //        try{
 //            con = (Connection)DriverManager.getConnection(url, username, password);
