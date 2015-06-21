@@ -1,13 +1,26 @@
 package dahampasala;
 
+import java.util.ArrayList;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Thilanka Bowala <Thilanka Bowala at GIGABYTE>
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    ArrayList<Student> stList;
+    DBOperations dbOps = new DBOperations();
+    
     public MainFrame() {
         initComponents();
+        loadStudents();
+    }
+    
+    void loadStudents(){
+        stList = dbOps.getStudent();
+        StudentDetails stDetails = new StudentDetails(stList);
+        tblStudents.setModel(stDetails);
     }
 
     /**
@@ -30,7 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
         btnUpdateStudent = new javax.swing.JButton();
         btnDeleteStudent = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblStudents = new javax.swing.JTable();
         pnlTeachers = new javax.swing.JPanel();
         pnlClasses = new javax.swing.JPanel();
 
@@ -59,6 +72,11 @@ public class MainFrame extends javax.swing.JFrame {
         lblInstitutePurposeDisplay.setText("Student Management System");
 
         btnAddStudent.setText("Add Student");
+        btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudentActionPerformed(evt);
+            }
+        });
 
         btnViewStudent.setText("View Student");
 
@@ -66,7 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         btnDeleteStudent.setText("Delete Student");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,7 +95,7 @@ public class MainFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblStudents);
 
         javax.swing.GroupLayout pnlStudentsLayout = new javax.swing.GroupLayout(pnlStudents);
         pnlStudents.setLayout(pnlStudentsLayout);
@@ -170,6 +188,12 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudentActionPerformed
+        NewStudent newStd = new NewStudent();
+        newStd.setVisible(true);
+        newStd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_btnAddStudentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,12 +236,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblInstituteName;
     private javax.swing.JLabel lblInstitutePurposeDisplay;
     private javax.swing.JPanel pnlClasses;
     private javax.swing.JPanel pnlStudents;
     private javax.swing.JPanel pnlTeachers;
     private javax.swing.JTabbedPane tbdMain;
+    private javax.swing.JTable tblStudents;
     // End of variables declaration//GEN-END:variables
 }
