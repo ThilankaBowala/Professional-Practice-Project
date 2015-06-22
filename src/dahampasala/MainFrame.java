@@ -79,6 +79,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnViewStudent.setText("View Student");
+        btnViewStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewStudentActionPerformed(evt);
+            }
+        });
 
         btnUpdateStudent.setText("Update Student");
         btnUpdateStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +206,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudentActionPerformed
         NewStudent newStd = new NewStudent();
         newStd.setVisible(true);
-        newStd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        newStd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnAddStudentActionPerformed
 
     private void btnUpdateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudentActionPerformed
@@ -215,6 +220,13 @@ public class MainFrame extends javax.swing.JFrame {
         deleteStd.setVisible(true);
         deleteStd.setFields(stList.get(tblStudents.getSelectedRow()));
     }//GEN-LAST:event_btnDeleteStudentActionPerformed
+
+    private void btnViewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStudentActionPerformed
+        ViewStudent viewStd = new ViewStudent();
+        viewStd.setVisible(true);
+        viewStd.setFields(stList.get(tblStudents.getSelectedRow()));
+        viewStd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_btnViewStudentActionPerformed
 
     /**
      * @param args the command line arguments
