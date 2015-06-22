@@ -44,6 +44,8 @@ public class NewStudent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("New Student");
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Student Details"));
+
         lblFName.setText("First Name :");
 
         lblLName.setText("Last Name :");
@@ -88,7 +90,7 @@ public class NewStudent extends javax.swing.JFrame {
                             .addComponent(lblAddress)
                             .addComponent(lblDOB)
                             .addComponent(lblGender))))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addComponent(lblLName)

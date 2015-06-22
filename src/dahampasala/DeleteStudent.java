@@ -1,17 +1,17 @@
 package dahampasala;
 
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Thilanka Bowala <Thilanka Bowala at GIGABYTE>
  */
-public class UpdateStudent extends javax.swing.JFrame {
+public class DeleteStudent extends javax.swing.JFrame {
 
     DBOperations dbOps = new DBOperations();
+    Student st;
     
-    public UpdateStudent() {
+    public DeleteStudent() {
         initComponents();
     }
 
@@ -62,16 +62,28 @@ public class UpdateStudent extends javax.swing.JFrame {
 
         jLabel1.setText("Registrated Date :");
 
-        btnSubmit.setText("Save Changes");
+        btnSubmit.setText("Delete Student");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
 
+        txtFName.setEnabled(false);
+
+        txtLName.setEnabled(false);
+
+        txtAddress.setEnabled(false);
+
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
+        cmbGender.setEnabled(false);
 
         cmbClass.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12", "Grade 13" }));
+        cmbClass.setEnabled(false);
+
+        jdateDOB.setEnabled(false);
+
+        jdateRegisteredDate.setEnabled(false);
 
         lblRegId.setText("Reg ID :");
 
@@ -110,13 +122,13 @@ public class UpdateStudent extends javax.swing.JFrame {
                 .addGap(150, 150, 150)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdateRegisteredDate, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 80, Short.MAX_VALUE))
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 53, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRegId)
                     .addComponent(txtRegId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,6 +186,7 @@ public class UpdateStudent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     void setFields(Student student) {
+        this.st = student;
         int cls = 0;
 
         txtRegId.setText(new Integer(student.getRegID()).toString());
@@ -226,30 +239,15 @@ public class UpdateStudent extends javax.swing.JFrame {
         cmbClass.setSelectedIndex(cls);
         jdateRegisteredDate.getDateEditor().setDate(student.getRegisteredDate());
     }
-
+    
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        final Student student = new Student();
-        student.setRegID(Integer.parseInt(txtRegId.getText()));
-        student.setFirstName(txtFName.getText());
-        student.setLastName(txtLName.getText());
 
-        Date dateDOB = jdateDOB.getDateEditor().getDate();
-        student.setDateOfBirth(dateDOB);
-
-        student.setAddress(txtAddress.getText());
-        student.setGender(cmbGender.getSelectedItem().toString());
-        student.setAdmissionClass(cmbClass.getSelectedItem().toString());
-
-        Date dateReg = jdateRegisteredDate.getDateEditor().getDate();
-        student.setRegisteredDate(dateReg);
-
-        boolean result = dbOps.updateStudent(student);
-
-        if (result) {
-            JOptionPane.showMessageDialog(this, "Successfully Updated!");
+        if (dbOps.deleteStudent(this.st)) {
+            JOptionPane.showMessageDialog(this, "Successfully Deleted!");
             this.dispose();
+            return;
         } else {
-            JOptionPane.showMessageDialog(this, "Error occred while updating!");
+            JOptionPane.showMessageDialog(this, "Error occred while deleting!");
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 
@@ -267,29 +265,23 @@ public class UpdateStudent extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
-
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdateStudent.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdateStudent.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdateStudent.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdateStudent.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DeleteStudent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UpdateStudent().setVisible(true);
+                new DeleteStudent().setVisible(true);
             }
         });
     }

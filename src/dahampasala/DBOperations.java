@@ -114,7 +114,7 @@ public class DBOperations {
             java.sql.Date sqlDateReg = new java.sql.Date(utilDateReg.getTime());
             
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "UPDATE StudentDetails SET firstName='"+ student.getFirstName() +"', lastName='"+ student.getLastName() +"', dob="+ sqlDateDOB +", address='"+ student.getAddress() +"', gender='"+ student.getGender() +"', admissionClass='"+ student.getAdmissionClass() +"', registeredDate=" + sqlDateReg + " WHERE regId=" + student.getRegID();
+            String query = "UPDATE StudentDetails SET firstName='"+ student.getFirstName() +"', lastName='"+ student.getLastName() +"', dob='"+ sqlDateDOB +"', address='"+ student.getAddress() +"', gender='"+ student.getGender() +"', admissionClass='"+ student.getAdmissionClass() +"', registeredDate='" + sqlDateReg + "' WHERE regId=" + student.getRegID();
 
             pst = (PreparedStatement) con.prepareStatement(query);
             pst.executeUpdate();

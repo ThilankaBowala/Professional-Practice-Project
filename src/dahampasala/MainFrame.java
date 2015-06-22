@@ -88,6 +88,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         btnDeleteStudent.setText("Delete Student");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
 
         tblStudents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,6 +209,12 @@ public class MainFrame extends javax.swing.JFrame {
         updatStd.setVisible(true);
         updatStd.setFields(stList.get(tblStudents.getSelectedRow()));
     }//GEN-LAST:event_btnUpdateStudentActionPerformed
+
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        DeleteStudent deleteStd = new DeleteStudent();
+        deleteStd.setVisible(true);
+        deleteStd.setFields(stList.get(tblStudents.getSelectedRow()));
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
 
     /**
      * @param args the command line arguments
