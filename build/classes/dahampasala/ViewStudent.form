@@ -34,8 +34,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" pref="360" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,7 +64,7 @@
                               <Component id="lblAddress" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblDOB" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblGender" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblLName" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblLName" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblFName" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -80,18 +80,15 @@
                       <Component id="cmbGender" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="cmbClass" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                       <Component id="txtLName" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtFName" max="32767" attributes="0"/>
+                      <Component id="txtFName" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtRegId" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jdateRegisteredDate" min="-2" pref="240" max="-2" attributes="0"/>
-                      <Component id="btnSubmit" min="-2" pref="116" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
+                  <Component id="jdateRegisteredDate" min="-2" pref="240" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -120,8 +117,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lblAddress" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtAddress" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAddress" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtAddress" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -135,12 +132,10 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jdateRegisteredDate" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jdateRegisteredDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnSubmit" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -181,19 +176,20 @@
             <Property name="text" type="java.lang.String" value="Registrated Date :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSubmit">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Save Changes"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtFName">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtLName">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAddress">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbGender">
           <Properties>
@@ -203,6 +199,7 @@
                 <StringItem index="1" value="Female"/>
               </StringArray>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbClass">
@@ -224,11 +221,18 @@
                 <StringItem index="12" value="Grade 13"/>
               </StringArray>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdateDOB">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdateRegisteredDate">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRegId">
           <Properties>
