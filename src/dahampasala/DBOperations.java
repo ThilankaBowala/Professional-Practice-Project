@@ -112,13 +112,13 @@ public class DBOperations {
             java.sql.Date sqlDateDOB = new java.sql.Date(utilDateDOB.getTime());
             java.util.Date utilDateReg = student.getRegisteredDate();
             java.sql.Date sqlDateReg = new java.sql.Date(utilDateReg.getTime());
-            
+
             con = (Connection) DriverManager.getConnection(url, username, password);
-            String query = "UPDATE StudentDetails SET firstName='"+ student.getFirstName() +"', lastName='"+ student.getLastName() +"', dob='"+ sqlDateDOB +"', address='"+ student.getAddress() +"', gender='"+ student.getGender() +"', admissionClass='"+ student.getAdmissionClass() +"', registeredDate='" + sqlDateReg + "' WHERE regId=" + student.getRegID();
+            String query = "UPDATE StudentDetails SET firstName='" + student.getFirstName() + "', lastName='" + student.getLastName() + "', dob='" + sqlDateDOB + "', address='" + student.getAddress() + "', gender='" + student.getGender() + "', admissionClass='" + student.getAdmissionClass() + "', registeredDate='" + sqlDateReg + "' WHERE regId=" + student.getRegID();
 
             pst = (PreparedStatement) con.prepareStatement(query);
             pst.executeUpdate();
-            
+
             return true;
         } catch (Exception ex) {
             Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,20 +136,20 @@ public class DBOperations {
             }
         }
     }
-    
+
     public boolean deleteStudent(Student student) {
         try {
             java.util.Date utilDateDOB = student.getDateOfBirth();
             java.sql.Date sqlDateDOB = new java.sql.Date(utilDateDOB.getTime());
             java.util.Date utilDateReg = student.getRegisteredDate();
             java.sql.Date sqlDateReg = new java.sql.Date(utilDateReg.getTime());
-            
+
             con = (Connection) DriverManager.getConnection(url, username, password);
             String query = "DELETE FROM StudentDetails WHERE regId=" + student.getRegID();
 
             pst = (PreparedStatement) con.prepareStatement(query);
             pst.execute();
-            
+
             return true;
         } catch (Exception ex) {
             Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,64 +167,33 @@ public class DBOperations {
             }
         }
     }
-    
-    
-//    int checkUsername(String user){
-//        try{
-//            con = (Connection)DriverManager.getConnection(url, username, password);
-//            String query = "SELECT username FROM employeedetails";
-//            pst = (PreparedStatement) con.prepareStatement(query);
-//            rs = pst.executeQuery();
-//            
-//            while(rs.next()){
-//                if(user.equals(rs.getString(1))){
-//                    return 0;
-//                }
-//            }
-//            return 1;
-//            
-//        }catch(Exception e){
-//            return 2;
-//        }finally{
-//            try {
-//                if(pst != null){
-//                    pst.close();
-//                }
-//                if(con != null){
-//                    con.close();
-//                }
-//            } catch (Exception ex) {
-//                    Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
-//    
-//    int checkLogin(String user, String pswd){
-//        try{
-//            con = (Connection)DriverManager.getConnection(url, username, password);
-//            String query = "SELECT username, password FROM employeedetails";
-//            pst = (PreparedStatement) con.prepareStatement(query);
-//            rs = pst.executeQuery();
-//            
-//            while(rs.next()){
-//                if(user.equals(rs.getString(1)) && pswd.equals(rs.getString(2))){
-//                    return 1;
-//                }
-//            }
-//            return 0;
-//        }catch(Exception e){
-//            return 2;
-//        }finally{
-//            try {
-//                if(pst != null){
-//                    pst.close();
-//                }
-//                if(con != null){
-//                    con.close();
-//                }
-//            } catch (Exception ex) {
-//                    Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//    }
+
+    int checkLogin(String user, String pswd) {
+        try {
+            con = (Connection) DriverManager.getConnection(url, username, password);
+            String query = "SELECT username, password FROM employeedetails";
+            pst = (PreparedStatement) con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                if (user.equals(rs.getString(1)) && pswd.equals(rs.getString(2))) {
+                    return 1;
+                }
+            }
+            return 0;
+        } catch (Exception e) {
+            return 2;
+        } finally {
+            try {
+                if (pst != null) {
+                    pst.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(DBOperations.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

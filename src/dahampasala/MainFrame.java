@@ -9,7 +9,7 @@ import javax.swing.JFrame;
  *
  * @author Thilanka Bowala <Thilanka Bowala at GIGABYTE>
  */
-public class MainFrame extends javax.swing.JFrame {
+public final class MainFrame extends javax.swing.JFrame {
 
     ArrayList<Student> stList;
     DBOperations dbOps = new DBOperations();
